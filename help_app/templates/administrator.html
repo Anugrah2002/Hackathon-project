@@ -1,0 +1,20 @@
+{% extends 'basic.html' %}
+{% block title %}
+{% endblock %}
+{% block body %}
+<div align="center">
+    {% if messages %}
+    {% for message in messages %}
+        <p class="{{ message.tags}}">{{message}}</p>
+    {% endfor %}
+    {% endif %}
+</div>
+<div align="center">
+    <a href="add_branch_user/">
+        <button>Add New Branch User</button>
+    </a>
+    <a href="add_branch/">
+        <button>Add New Branch</button>
+    </a>
+</div>
+{% endblock %}
