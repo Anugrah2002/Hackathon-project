@@ -51,28 +51,29 @@ def add_branch(request):
             messages.success(request, "Branch Created successfully")
             return redirect(administrator)
         else:
-            print(my_form.errors)
-            return render(request, 'add_branch.html', {'form': form, 'form_error': my_form.errors.as_json})
+            return render(request, 'add_branch.html', {'form': my_form})
     return render(request, 'add_branch.html', {'form': form})
 
 
 def add_branch_user(request):
     if request.method == "POST":
         email = request.POST.get('email')
-        branch_name = request.POST.get('branch')
         name = request.POST.get('name')
         emp_id = request.POST.get('emp_id')
         contact_number = request.POST.get('contact_no')
+        branch_name = request.POST.get('branch')
+        branch = Branch.objects.get(branch_name=branch_name)
         password = password_generator()
         request.session['new_password'] = password
         html_message = loader.render_to_string('emails/branch_created_email.html', {'password': password})
         mail = send_mail('Password', '', settings.EMAIL_HOST_USER, [email], html_message=html_message, fail_silently=False)
         if mail:
             my_user = User.objects.create(email=email, password=make_password(password), is_branch_user=True)
-            Branch_user(user=my_user, branch_name=branch_name, name=name, emp_id=emp_id, contact_number=contact_number).save()
+            Branch_user(user=my_user, branch_name=branch, name=name, emp_id=emp_id, contact_number=contact_number).save()
             messages.success(request, "Branch Created successfully")
             return redirect(administrator)
         else:
             messages.error(request, "Branch not created")
             return render(request, 'add_branch_user.html')
-    return render(request, 'add_branch_user.html')
+    branches = Branch.objects.values_list("branch_name", flat=True).distinct()
+    return render(request, 'add_branch_user.html',{'branches': branches})

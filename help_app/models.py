@@ -60,5 +60,4 @@ class Branch_user(models.Model):
     branch_name = models.ForeignKey(Branch, on_delete=models.CASCADE)
     name = models.CharField(max_length=64)
     emp_id = models.CharField(max_length=16)
-    email = models.EmailField()
     contact_number = models.CharField(max_length=10, null=True, blank=True)

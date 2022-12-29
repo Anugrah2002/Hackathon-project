@@ -51,6 +51,7 @@ function verifyOTP(){
             if (data == "verified"){
                 document.getElementById('otpRow').hidden = true;
                 document.getElementById('otpButtonRow').hidden = true;
+                verifiedFrom = document.getElementsByClassName("verifiedFrom");
                 for(i=0;i<verifiedFrom.length;i++){
                     verifiedFrom[i].hidden = false;
                 }

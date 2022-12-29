@@ -2,7 +2,7 @@
 {% block title %}Add Branch{% endblock %}
 {% block body %}
 <div align="center">
-    {{form_error}}
+    {{form.errors.as_json}}
     <form action="/administrator/add_branch/" method="post">{% csrf_token %}
         <table>
             <tr>

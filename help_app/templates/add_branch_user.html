@@ -5,15 +5,22 @@
         <table cellpadding="10">
             <tr>
                 <td>Email</td>
-                <td><input type="email" name="email"> </td>
+                <td><input type="email" name="email"></td>
             </tr>
             <tr>
                 <td>Branch Name</td>
-                <td><input type="text" name="branch"> </td>
+                <td>
+                    <select name="branch">
+                        <option>Select Branch</option>
+                        {% for i in branches %}
+                        <option value="{{i}}">{{i|title}}</option>
+                        {% endfor %}
+                    </select>
+                </td>
             </tr>
             <tr>
                 <td>Name</td>
-                <td><input type="text" name="name"> </td>
+                <td><input type="text" name="name"></td>
             </tr>
             <tr>
                 <td>Employee Id</td>
