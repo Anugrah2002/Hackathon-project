@@ -18,7 +18,7 @@
             <tr>
                 <td>Email Address</td>
                 <td>
-                    <input type="email" id="email" placeholder="Enter your email address" name="username">
+                    <input type="email" id="email" placeholder="Enter your email address" name="username" value="a@vitbhopal.ac.in">
                 </td>
             </tr>
             <tr id="otpRow" hidden>
@@ -30,7 +30,7 @@
             <tr id="otpButtonRow" hidden>
                 <td>
                     <button type="button" onclick="verifyOTP()">Verify OTP</button>
-                    <button type="button">Resend OTP</button>
+                    <button type="button" disabled id="resend-button" onclick="validateEmail()"></button>
                 </td>
             </tr>
             <tr>
