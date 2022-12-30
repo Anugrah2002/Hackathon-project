@@ -19,6 +19,7 @@ from . import views, ajax
 
 urlpatterns = [
     path("", views.home_page),
+    path("submit_complain/", views.home_page),
     path("login_page/", views.login_page),
     path("administrator/", views.administrator),
     path("administrator/add_branch_user/", views.add_branch_user),

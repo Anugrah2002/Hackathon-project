@@ -1,5 +1,6 @@
 import random
 import string
+from datetime import datetime
 
 from django.conf import settings
 from django.contrib.auth import authenticate, login
@@ -19,6 +20,20 @@ def password_generator():
 
 
 def home_page(request):
+    if request.method == "POST":
+        email = request.POST.get('email')
+        full_name = request.POST.get('full_name')
+        reg_no = request.POST.get('reg_no')
+        branch_name = request.POST.get('branch')
+        message = request.POST.get('message')
+        branch = Branch.objects.get(branch_name=branch_name)
+        date_time = datetime.now()
+        ticket_counter = Ticket_counter.objects.get_or_create(date=date_time.date())[0]
+        ticket_count = (ticket_counter.count_number+1)
+        ticket_count_str = (format(ticket_count, '05d'))
+        ticket_no = branch.branch_code+str(ticket_count_str)
+        print(ticket_no)
+        return redirect('/')
     branches = Branch.objects.values_list("branch_name", flat=True).distinct()
     return render(request, 'home_page.html', {'branches': branches})
 
@@ -76,4 +91,4 @@ def add_branch_user(request):
             messages.error(request, "Branch not created")
             return render(request, 'add_branch_user.html')
     branches = Branch.objects.values_list("branch_name", flat=True).distinct()
-    return render(request, 'add_branch_user.html',{'branches': branches})
+    return render(request, 'add_branch_user.html', {'branches': branches})

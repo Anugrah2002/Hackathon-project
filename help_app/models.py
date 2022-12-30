@@ -51,8 +51,11 @@ class User(AbstractUser):
 
 
 class Branch(models.Model):
-    branch_name = models.CharField(max_length=32, unique=True, error_messages={"unique":"Branch already Present"})
-    branch_code = models.CharField(max_length=3, unique=True, error_messages={"unique":"Branch code already assign to other Branch"})
+    branch_name = models.CharField(max_length=32, unique=True, error_messages={"unique": "Branch already Present"})
+    branch_code = models.CharField(max_length=3, unique=True, error_messages={"unique": "Branch code already assign to other Branch"})
+
+    def __str__(self):
+        return self.branch_name
 
 
 class Branch_user(models.Model):
@@ -61,3 +64,24 @@ class Branch_user(models.Model):
     name = models.CharField(max_length=64)
     emp_id = models.CharField(max_length=16)
     contact_number = models.CharField(max_length=10, null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+
+class Ticket_counter(models.Model):
+    date = models.DateField()
+    count_number = models.PositiveIntegerField(default=0)
+
+
+class Ticket(models.Model):
+    ticket_no = models.CharField(max_length=16)
+    email = models.EmailField()
+    full_name = models.CharField(max_length=64)
+    reg_no = models.CharField(max_length=12)
+    branch_name = models.ForeignKey(Branch, on_delete=models.CASCADE)
+    complaint = models.CharField(max_length=2048)
+    ticket_status = models.CharField(max_length=16)
+    date_time = models.DateTimeField()
+    solution = models.CharField(max_length=2048, null=True, blank=True)
+    solved_by = models.ForeignKey(Branch_user, on_delete=models.CASCADE, null=True, blank=True)

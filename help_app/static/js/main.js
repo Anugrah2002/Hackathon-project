@@ -86,3 +86,7 @@ function verifyOTP(){
         }
     });
 }
+
+function submitForm(){
+    document.getElementById('complainForm').submit()
+}

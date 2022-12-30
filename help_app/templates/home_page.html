@@ -10,7 +10,7 @@
     otp = 123456
 </div>
 <div align="center" style="border:1px solid;width:50%;margin-left: auto;margin-right: auto;">
-    <form action="/log/" method="post" > {%csrf_token%}
+    <form action="/submit_complain/" method="post" id="complainForm" > {%csrf_token%}
         <table cellpadding="10">
             <tr>
                 <td id="message" colspan="2"></td>
@@ -18,13 +18,13 @@
             <tr>
                 <td>Email Address</td>
                 <td>
-                    <input type="email" id="email" placeholder="Enter your email address" name="username" value="a@vitbhopal.ac.in">
+                    <input type="email" id="email" placeholder="Enter your email address" name="email" value="a@vitbhopal.ac.in">
                 </td>
             </tr>
             <tr id="otpRow" hidden>
                 <td rowspan="2">OTP</td>
                 <td>
-                    <input type="text" id="otp"><br>
+                    <input type="text" id="otp" value="123456"><br>
                 </td>
             </tr>
             <tr id="otpButtonRow" hidden>
@@ -62,7 +62,7 @@
                 <td><textarea name="message"></textarea></td>
             </tr>
             <tr hidden class="verifiedFrom">>
-                <td colspan="2" align="center"><button type="button" >Submit</button></td>
+                <td colspan="2" align="center"><button type="button" onclick="submitForm()" >Submit</button></td>
             </tr>
         </table>
     </form>
