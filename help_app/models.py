@@ -75,7 +75,7 @@ class Ticket_counter(models.Model):
 
 
 class Ticket(models.Model):
-    ticket_no = models.CharField(max_length=16)
+    ticket_no = models.CharField(max_length=16, unique=True)
     email = models.EmailField()
     full_name = models.CharField(max_length=64)
     reg_no = models.CharField(max_length=12)

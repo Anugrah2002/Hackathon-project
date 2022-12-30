@@ -9,6 +9,7 @@ from django.contrib.auth.hashers import make_password
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 from django.template import loader
+from django.utils import timezone
 
 from .forms import BranchForm
 from .models import *
@@ -27,12 +28,15 @@ def home_page(request):
         branch_name = request.POST.get('branch')
         message = request.POST.get('message')
         branch = Branch.objects.get(branch_name=branch_name)
-        date_time = datetime.now()
+        date_time = datetime.now(tz=timezone.utc)
         ticket_counter = Ticket_counter.objects.get_or_create(date=date_time.date())[0]
         ticket_count = (ticket_counter.count_number + 1)
-        ticket_count_str = (format(ticket_count, '05d'))
+        ticket_count_str = format(ticket_count, '05d')
         ticket_no = branch.branch_code + str(date_time.year) + str(date_time.day) + str(ticket_count_str)
-        print(ticket_no)
+        Ticket(ticket_no=ticket_no, email=email, full_name=full_name, reg_no=reg_no, branch_name=branch, complaint=message, ticket_status="Created",
+               date_time=date_time).save()
+        ticket_counter.count_number = ticket_count
+        ticket_counter.save()
         return render(request, 'thank_you.html', {'ticket_no': ticket_no})
     branches = Branch.objects.values_list("branch_name", flat=True).distinct()
     return render(request, 'home_page.html', {'branches': branches})
