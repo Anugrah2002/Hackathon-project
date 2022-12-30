@@ -29,11 +29,11 @@ def home_page(request):
         branch = Branch.objects.get(branch_name=branch_name)
         date_time = datetime.now()
         ticket_counter = Ticket_counter.objects.get_or_create(date=date_time.date())[0]
-        ticket_count = (ticket_counter.count_number+1)
+        ticket_count = (ticket_counter.count_number + 1)
         ticket_count_str = (format(ticket_count, '05d'))
-        ticket_no = branch.branch_code+str(ticket_count_str)
+        ticket_no = branch.branch_code + str(date_time.year) + str(date_time.day) + str(ticket_count_str)
         print(ticket_no)
-        return redirect('/')
+        return render(request, 'thank_you.html', {'ticket_no': ticket_no})
     branches = Branch.objects.values_list("branch_name", flat=True).distinct()
     return render(request, 'home_page.html', {'branches': branches})
 

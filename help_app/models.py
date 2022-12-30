@@ -70,7 +70,7 @@ class Branch_user(models.Model):
 
 
 class Ticket_counter(models.Model):
-    date = models.DateField()
+    date = models.DateField(unique=True)
     count_number = models.PositiveIntegerField(default=0)
 
 
