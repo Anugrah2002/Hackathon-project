@@ -67,11 +67,13 @@ function validateEmail(){
 
 function verifyOTP(){
     otp = document.getElementById('otp').value;
+    let emailAddress = document.getElementById('email').value;
     $.ajax({
         type:'POST',
         url:'/verify_OTP/',
         data:{
             otp:otp,
+            email:emailAddress,
             csrfmiddlewaretoken: $('[name="csrfmiddlewaretoken"]').val()
         },
         success:function(data){
@@ -82,6 +84,10 @@ function verifyOTP(){
                 for(i=0;i<verifiedFrom.length;i++){
                     verifiedFrom[i].hidden = false;
                 }
+            }
+            else if (data == "not verified"){
+                document.getElementById("otp-text").innerHTML = "Please Enter the correct OTP!";
+                document.getElementById("otp-text").style.color = "red";
             }
         }
     });
