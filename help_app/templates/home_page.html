@@ -5,8 +5,8 @@
     <button> Administration Login</button>
 </a>
 <form action="/search_by_ticket_no/" method="post"> {% csrf_token %}
-    <input type="text" placeholder="Enter Ticket Number"  name="ticket_no">
-    <input type="email" placeholder="Enter Email Address" name="email">
+    <input type="text" placeholder="Enter Ticket Number"  required name="ticket_no">
+    <input type="email" placeholder="Enter Email Address" required name="email">
     <input type="submit" value="search">
 </form>
     <br>
