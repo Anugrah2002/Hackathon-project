@@ -37,12 +37,13 @@ def home_page(request):
                date_time=date_time).save()
         ticket_counter.count_number = ticket_count
         ticket_counter.save()
+        html_message = loader.render_to_string('emails/branch_created_email.html', {'ticket_no': ticket_no,'message':message})
+        mail = send_mail('Complaint', '', settings.EMAIL_HOST_USER, [email], html_message=html_message, fail_silently=False)
         return render(request, 'thank_you.html', {'ticket_no': ticket_no})
     branches = Branch.objects.values_list("branch_name", flat=True).distinct()
     return render(request, 'home_page.html', {'branches': branches})
 
 
-# Create your views here.
 def login_page(request):
     if request.method == "POST":
         username = request.POST.get('username')
