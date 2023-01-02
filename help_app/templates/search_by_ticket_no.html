@@ -1,0 +1,12 @@
+{% extends 'basic.html' %}
+{% block title %} Search Page {% endblock %}
+{% block body %}
+{{ticket.ticket_no}}
+<br> {{ticket.full_name}}
+<br> {{ticket.reg_no}}
+<br> {{ticket.branch_name}}
+<br> {{ticket.complaint}}
+<br> {{ticket.date_time}}
+<br> {{ticket.solution}}
+<br> {{ticket.solved_by}}
+{% endblock %}

@@ -125,5 +125,3 @@ EMAIL_HOST_USER = 'testingmydjango@gmail.com'
 EMAIL_HOST_PASSWORD = 'rdskaopzpjeppbpd'
 EMAIL_PORT = 587
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-
-CSRF_TRUSTED_ORIGINS = ['https://8000-anugrah2002-hackathonpr-uf4fcffmi90.ws-us80.gitpod.io']

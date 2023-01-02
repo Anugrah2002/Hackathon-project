@@ -7,6 +7,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password
 from django.core.mail import send_mail
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.template import loader
 from django.utils import timezone
@@ -37,7 +38,7 @@ def home_page(request):
                date_time=date_time).save()
         ticket_counter.count_number = ticket_count
         ticket_counter.save()
-        html_message = loader.render_to_string('emails/branch_created_email.html', {'ticket_no': ticket_no,'message':message})
+        html_message = loader.render_to_string('emails/complaint.html', {'ticket_no': ticket_no, 'message': message})
         mail = send_mail('Complaint', '', settings.EMAIL_HOST_USER, [email], html_message=html_message, fail_silently=False)
         return render(request, 'thank_you.html', {'ticket_no': ticket_no})
     branches = Branch.objects.values_list("branch_name", flat=True).distinct()
@@ -97,3 +98,14 @@ def add_branch_user(request):
             return render(request, 'add_branch_user.html')
     branches = Branch.objects.values_list("branch_name", flat=True).distinct()
     return render(request, 'add_branch_user.html', {'branches': branches})
+
+
+def search_by_ticket_no(request):
+    if request.method == "POST":
+        ticket_no = request.POST.get("ticket_no")
+        email = request.POST.get("email")
+        try:
+            ticket = Ticket.objects.get(ticket_no=ticket_no, email=email)
+            return render(request, 'search_by_ticket_no.html',{'ticket':ticket})
+        except:
+            return redirect(home_page)

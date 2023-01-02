@@ -4,16 +4,18 @@
 <a href="/login_page/">
     <button> Administration Login</button>
 </a>
-<a href="/">
-
-</a>
+<form action="/search_by_ticket_no/" method="post"> {% csrf_token %}
+    <input type="text" placeholder="Enter Ticket Number"  name="ticket_no">
+    <input type="email" placeholder="Enter Email Address" name="email">
+    <input type="submit" value="search">
+</form>
     <br>
 <div align="center">
     email = a@vitbhopal.ac.in <br>
     otp = 123456
 </div>
 <div align="center" style="border:1px solid;width:50%;margin-left: auto;margin-right: auto;">
-    <form action="/submit_complain/" method="post" id="complainForm" > {%csrf_token%}
+    <form action="/submit_complain/" method="post" id="complainForm"> {%csrf_token%}
         <table cellpadding="10">
             <tr>
                 <td id="message" colspan="2"></td>
