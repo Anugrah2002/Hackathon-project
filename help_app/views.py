@@ -129,6 +129,7 @@ def branchUser(request):
     print(username)
     return render(request, 'branch_user.html')
 
+
 def user_logout(request):
     logout(request)
     return redirect('/')
