@@ -125,8 +125,8 @@ def search_by_ticket_no(request):
 
 
 def branchUser(request):
-    use = request.user.username
-    print(use)
+    username = request.user.email
+    print(username)
     return render(request, 'branch_user.html')
 
 def user_logout(request):
