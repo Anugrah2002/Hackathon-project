@@ -1,7 +1,7 @@
 {% extends 'basic.html' %}
 {% block title %} Search Page {% endblock %}
 {% block body %}
-{{ticket.ticket_no}}
+{{ticket.ticket_no}} {% csrf_token %}
 <br> {{ticket.full_name}}
 <br> {{ticket.reg_no}}
 <br> {{ticket.branch_name}}
