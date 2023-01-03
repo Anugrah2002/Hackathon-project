@@ -50,8 +50,12 @@ def login_page(request):
         password = request.POST.get('password')
         user = authenticate(username=username, password=password)
         if user is not None:
-            login(request, user)
-            return redirect('/administrator/')
+            if user.is_administrator:
+                login(request, user)
+                return redirect('/administrator/')
+            elif user.is_branch_user:
+                login(request, user)
+                return redirect('/branch_user/')
         else:
             messages.error(request, "Wrong Username and Password ")
             return render(request, 'login_page.html')
@@ -108,3 +112,12 @@ def search_by_ticket_no(request):
             return render(request, 'search_by_ticket_no.html',{'ticket': ticket})
         except:
             return redirect(home_page)
+
+
+
+def branchUser(request):
+    use = request.user.username
+    print(use)
+    return render(request, 'branch_user.html')
+
+# print(make_password("anshul"))
