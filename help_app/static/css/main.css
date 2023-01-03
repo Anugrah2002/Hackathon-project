@@ -10,6 +10,23 @@
     font-size:20px;
     color:white;
 }
+.header div{
+    display: inline-block;
+}
+.logout{
+    float: right;
+    margin-top:20px;
+    margin-right:20px;
+}
+.logout button{
+    padding:5px 15px;
+    border-color: #000000;
+    border-radius:5px;
+    color: ;
+    background-color: #ffffff;
+    background-image: none;
+    font-size:16px;
+}
 .main{
     height:85vh;
     display: flex;
@@ -79,4 +96,17 @@ select:focus{
 }
 th{
     font-size:22px;
+}
+
+.leftbox{
+    float:left;
+    width:30%;
+}
+.middlebox{
+    float:left;
+    width:30%;
+}
+.rightbox{
+    float:right;
+    width:30%;
 }

@@ -22,7 +22,7 @@ urlpatterns = [
     path("submit_complain/", views.home_page),
     path("login_page/", views.login_page),
     path("search_by_ticket_no/", views.search_by_ticket_no),
-
+    path('logout/',views.user_logout),
     #administrator
     path("administrator/", views.administrator),
     path("branch_user/", views.branchUser),

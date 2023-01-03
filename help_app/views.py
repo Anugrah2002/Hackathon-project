@@ -3,7 +3,7 @@ import string
 from datetime import datetime
 
 from django.conf import settings
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password
 from django.core.mail import send_mail
@@ -63,7 +63,17 @@ def login_page(request):
 
 
 def administrator(request):
-    return render(request, 'administrator.html')
+    all_tickets = Ticket.objects.all()
+    today_date = datetime.now()
+    tickets_created_today = all_tickets.filter(date_time__date=today_date.date()).count()
+    tickets_solved_today = all_tickets.filter(date_time__date=today_date.date(), ticket_status="solved").count()
+    data = {
+        'tickets_created_today': tickets_created_today,
+        'tickets_solved_today': tickets_solved_today,
+        'tickets_left_today': tickets_created_today - tickets_solved_today,
+
+    }
+    return render(request, 'administrator.html', data)
 
 
 def add_branch(request):
@@ -109,10 +119,9 @@ def search_by_ticket_no(request):
         email = request.POST.get("email")
         try:
             ticket = Ticket.objects.get(ticket_no=ticket_no, email=email)
-            return render(request, 'search_by_ticket_no.html',{'ticket': ticket})
+            return render(request, 'search_by_ticket_no.html', {'ticket': ticket})
         except:
             return redirect(home_page)
-
 
 
 def branchUser(request):
@@ -120,4 +129,6 @@ def branchUser(request):
     print(use)
     return render(request, 'branch_user.html')
 
-# print(make_password("anshul"))
+def user_logout(request):
+    logout(request)
+    return redirect('/')
