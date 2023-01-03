@@ -117,8 +117,8 @@ def search_by_ticket_no(request):
 
 
 def branchUser(request):
-    username = User.username
-    print(username)
+    use = request.user.username
+    print(use)
     return render(request, 'branch_user.html')
 
 # print(make_password("anshul"))
