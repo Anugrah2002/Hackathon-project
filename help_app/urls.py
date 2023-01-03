@@ -25,6 +25,7 @@ urlpatterns = [
 
     #administrator
     path("administrator/", views.administrator),
+    path("branch_user/", views.branchUser),
     path("administrator/add_branch_user/", views.add_branch_user),
     path("administrator/add_branch/", views.add_branch),
 
