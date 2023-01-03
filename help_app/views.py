@@ -7,7 +7,6 @@ from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password
 from django.core.mail import send_mail
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.template import loader
 from django.utils import timezone
@@ -106,6 +105,6 @@ def search_by_ticket_no(request):
         email = request.POST.get("email")
         try:
             ticket = Ticket.objects.get(ticket_no=ticket_no, email=email)
-            return render(request, 'search_by_ticket_no.html',{'ticket':ticket})
+            return render(request, 'search_by_ticket_no.html',{'ticket': ticket})
         except:
             return redirect(home_page)
