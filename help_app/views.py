@@ -55,7 +55,8 @@ def login_page(request):
                 login(request, user)
                 return redirect('/administrator/')
             elif user.is_branch_user:
-                return redirect('/branch_user')
+                login(request, user)
+                return redirect('/branch_user/')
         else:
             messages.error(request, "Wrong Username and Password ")
             return render(request, 'login_page.html')
@@ -116,8 +117,8 @@ def search_by_ticket_no(request):
 
 
 def branchUser(request):
-    # username = user.username()
-    # print()
+    username = User.username
+    print(username)
     return render(request, 'branch_user.html')
 
 # print(make_password("anshul"))
