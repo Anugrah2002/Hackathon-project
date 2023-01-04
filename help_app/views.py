@@ -126,8 +126,12 @@ def search_by_ticket_no(request):
 
 def branchUser(request):
     username = request.user.email
-    print(username)
-    return render(request, 'branch_user.html')
+    branch_user_query = Branch_user.objects.filter(user=request.user)
+    branch = branch_user_query[0].branch_name
+    print(branch)
+    tickets = Ticket.objects.filter(branch_name=branch)
+    print(tickets)
+    return render(request, 'branch_user.html',{'tickets': tickets, ' branches':branch})
 
 
 def user_logout(request):

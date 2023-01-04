@@ -1,10 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Branch User</title>
-</head>
-<body>
-<h1>Branch User</h1>
-</body>
-</html>
+{% extends 'basic.html' %}
+{% block body %}
+<div class="header" align="center">
+    <div>
+        <p> {{branches}} </p>
+    </div>
+    <div class="logout">
+        <button onclick="window.location.href='/logout/'">Logout</button>
+    </div>
+</div>
+
+<div>
+
+    <table border="1" align="center" cellspacing="4" cellpadding="3">
+        <tr>
+            <td>Ticket Number</td>
+            <td>Name</td>
+            <td>email</td>
+            <td>
+                Register Number
+            </td><td>
+                Complaint
+            </td><td>
+                Date of Lodging Complaint
+            </td><td>
+                Status
+            </td>
+        </tr>
+              {% for i in tickets %}
+        <tr>
+            <td>
+                {{i.ticket_no}}
+            </td>            <td>
+                {{i.full_name}}
+            </td>            <td>
+                {{i.email}}
+            </td>            <td>
+                {{i.reg_no}}
+            </td>            <td>
+                {{i.complaint}}
+            </td>            <td>
+                {{i.date_time}}
+            </td>
+            <td>{{i.ticket_status}}</td>
+        </tr>
+            {% endfor %}
+    </table>
+
+</div>
+{% endblock %}
