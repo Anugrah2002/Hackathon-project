@@ -1,10 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Branch User</title>
-</head>
-<body>
-<h1>Branch User</h1>
-</body>
-</html>
+{% extends 'basic.html' %}
+{% block body %}
+<div class="header" align="center">
+    <div>
+        <p> Branch User </p>
+    </div>
+    <div class="logout">
+        <button onclick="window.location.href='/logout/'">Logout</button>
+    </div>
+</div>
+<div>
+    <table border="1" align="center" cellspacing="4" cellpadding="3">
+        <tr>
+            <td>Sr.No.</td>
+            <td>
+                Name
+            </td>
+            <td>
+                Register Number
+            </td><td>
+                Complaint
+            </td><td>
+                Date of Lodging Complaint
+            </td><td>
+                Status
+            </td>
+        </tr>
+        <tr>
+            <td>
+                01
+            </td>            <td>
+                Anugrah Nigam
+            </td>            <td>
+                19MIM10051
+            </td>            <td>
+                Wifi not working
+            </td>            <td>
+                01/05/2002
+            </td>            <td>
+                unsolved
+            </td>
+        </tr>
+    </table>
+</div>
+{% endblock %}
