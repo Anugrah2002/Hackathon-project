@@ -2,19 +2,20 @@
 {% block body %}
 <div class="header" align="center">
     <div>
-        <p> Branch User </p>
+        <p> {{branches}} </p>
     </div>
     <div class="logout">
         <button onclick="window.location.href='/logout/'">Logout</button>
     </div>
 </div>
+
 <div>
+
     <table border="1" align="center" cellspacing="4" cellpadding="3">
         <tr>
-            <td>Sr.No.</td>
-            <td>
-                Name
-            </td>
+            <td>Ticket Number</td>
+            <td>Name</td>
+            <td>email</td>
             <td>
                 Register Number
             </td><td>
@@ -25,21 +26,25 @@
                 Status
             </td>
         </tr>
+              {% for i in tickets %}
         <tr>
             <td>
-                01
+                {{i.ticket_no}}
             </td>            <td>
-                Anugrah Nigam
+                {{i.full_name}}
             </td>            <td>
-                19MIM10051
+                {{i.email}}
             </td>            <td>
-                Wifi not working
+                {{i.reg_no}}
             </td>            <td>
-                01/05/2002
+                {{i.complaint}}
             </td>            <td>
-                unsolved
+                {{i.date_time}}
             </td>
+            <td>{{i.ticket_status}}</td>
         </tr>
+            {% endfor %}
     </table>
+
 </div>
 {% endblock %}

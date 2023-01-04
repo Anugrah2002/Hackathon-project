@@ -131,7 +131,7 @@ def branchUser(request):
     print(branch)
     tickets = Ticket.objects.filter(branch_name=branch)
     print(tickets)
-    return render(request, 'branch_user.html',{'tickets': tickets})
+    return render(request, 'branch_user.html',{'tickets': tickets, ' branches':branch})
 
 
 def user_logout(request):
