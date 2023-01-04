@@ -67,10 +67,15 @@ def administrator(request):
     today_date = datetime.now()
     tickets_created_today = all_tickets.filter(date_time__date=today_date.date()).count()
     tickets_solved_today = all_tickets.filter(date_time__date=today_date.date(), ticket_status="solved").count()
+    tickets_created_till_today = all_tickets.all().count()
+    tickets_solved_till_today = all_tickets.filter(ticket_status="solved").count()
     data = {
         'tickets_created_today': tickets_created_today,
         'tickets_solved_today': tickets_solved_today,
         'tickets_left_today': tickets_created_today - tickets_solved_today,
+        'tickets_created_till_today': tickets_created_till_today,
+        'tickets_solved_till_today': tickets_solved_till_today,
+        'tickets_left_till_today': tickets_created_till_today - tickets_solved_till_today,
 
     }
     return render(request, 'administrator.html', data)
