@@ -33,7 +33,7 @@ def home_page(request):
         ticket_count = (ticket_counter.count_number + 1)
         ticket_count_str = format(ticket_count, '05d')
         ticket_no = branch.branch_code + str(date_time.year) + str(date_time.day) + str(ticket_count_str)
-        Ticket(ticket_no=ticket_no, email=email, full_name=full_name, reg_no=reg_no, branch_name=branch, complaint=message, ticket_status="Created",
+        Ticket(ticket_no=ticket_no, email=email, full_name=full_name, reg_no=reg_no, branch_name=branch, complaint=message, ticket_status="Unsolved",
                date_time=date_time).save()
         ticket_counter.count_number = ticket_count
         ticket_counter.save()
@@ -130,15 +130,18 @@ def search_by_ticket_no(request):
 
 
 def branchUser(request):
-    username = request.user.email
-    branch_user_query = Branch_user.objects.filter(user=request.user)
-    branch = branch_user_query[0].branch_name
-    print(branch)
+    branch_user = Branch_user.objects.get(user=request.user)
+    branch = branch_user.branch_name
     tickets = Ticket.objects.filter(branch_name=branch)
-    print(tickets)
-    return render(request, 'branch_user.html',{'tickets': tickets, ' branches':branch})
+    return render(request, 'branch_user.html', {'tickets': tickets, 'branches': branch})
 
 
 def user_logout(request):
     logout(request)
     return redirect('/')
+
+
+def change_password(request):
+    if request.method == "POST":
+        pass
+    return render(request, 'change_password.html')

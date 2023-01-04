@@ -28,6 +28,7 @@ urlpatterns = [
     path("branch_user/", views.branchUser),
     path("administrator/add_branch_user/", views.add_branch_user),
     path("administrator/add_branch/", views.add_branch,name="add_branch"),
+    path("change_password/", views.change_password,name="change_password"),
 
     # Ajax
     path('send_OTP/', ajax.send_OTP),
