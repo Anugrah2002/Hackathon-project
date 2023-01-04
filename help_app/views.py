@@ -5,7 +5,7 @@ from datetime import datetime
 from django.conf import settings
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from django.contrib.auth.hashers import make_password
+from django.contrib.auth.hashers import make_password, check_password
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 from django.template import loader
@@ -143,5 +143,13 @@ def user_logout(request):
 
 def change_password(request):
     if request.method == "POST":
-        pass
+        old_password = request.POST.get('old_password')
+        password = request.POST.get('new_password')
+        if check_password(old_password, request.user.password):
+            new_password = make_password(password)
+            request.user.password = new_password
+            request.user.save()
+            # return redirect()
+        else:
+            messages.error(request, "Old password is Wrong")
     return render(request, 'change_password.html')
