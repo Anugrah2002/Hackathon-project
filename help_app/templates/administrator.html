@@ -10,6 +10,9 @@
     <div class="logout">
         <button onclick="window.location.href='/logout/'">Logout</button>
     </div>
+    <div class="change_password">
+        <button onclick="window.location.href='/change_password/'">Change Password</button>
+    </div>
 </div>
 <div class="main">
     <div style="width:70%;" class="form">
@@ -56,6 +59,14 @@
         <p class="{{ message.tags}}">{{message}}</p>
         {% endfor %}
         {% endif %}
+    </div>
+    <div align="center">
+        <a href="{% url 'all_solved_tickets' %}">
+            <button class="button-blue">All Solved Tickets</button>
+        </a>
+        <a href="{% url 'all_unsolved_tickets' %}">
+            <button class="button-blue">All Unsolved Tickets</button>
+        </a>
     </div>
     <div align="center">
         <a href="add_branch_user/">
