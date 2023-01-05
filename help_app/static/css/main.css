@@ -13,6 +13,20 @@
 .header div{
     display: inline-block;
 }
+.change_password{
+    float:right;
+    margin-top:20px;
+    margin-right:20px;
+}
+.change_password button{
+    padding:5px 15px;
+    border-color: #000000;
+    border-radius:5px;
+    color: ;
+    background-color: #ffffff;
+    background-image: none;
+    font-size:16px;
+}
 .logout{
     float: right;
     margin-top:20px;
