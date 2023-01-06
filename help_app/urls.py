@@ -18,7 +18,7 @@ from django.urls import path, include
 from . import views, ajax
 
 urlpatterns = [
-    path("", views.home_page),
+    path("", views.home_page, name="home"),
     path("submit_complain/", views.home_page),
     path("login_page/", views.login_page),
     path("search_by_ticket_no/", views.search_by_ticket_no),
@@ -26,6 +26,7 @@ urlpatterns = [
     #administrator
     path("administrator/", views.administrator),
     path("branch_user/", views.branchUser),
+    path("modify/<int:id>", views.modifyStatus,name="modifyStatus"),
     path("administrator/add_branch_user/", views.add_branch_user),
     path("administrator/add_branch/", views.add_branch,name="add_branch"),
     path("administrator/all_solved_tickets/", views.all_solved_tickets,name="all_solved_tickets"),

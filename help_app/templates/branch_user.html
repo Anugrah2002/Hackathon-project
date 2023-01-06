@@ -23,6 +23,7 @@
             <td> Complaint</td>
             <td> Date of Lodging Complaint</td>
             <td> Status</td>
+            <td> Modify Status</td>
         </tr>
         {% for i in tickets %}
         <tr>
@@ -33,6 +34,7 @@
             <td> {{i.complaint}}</td>
             <td> {{i.date_time}}</td>
             <td> {{i.ticket_status}}</td>
+            <td align="center"><a href="{% url 'modifyStatus' i.id %}"><button >Modify</button></a></td>
         </tr>
         {% endfor %}
     </table>

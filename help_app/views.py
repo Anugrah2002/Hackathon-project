@@ -142,7 +142,7 @@ def all_solved_tickets(request):
 @login_required(login_url="/login_page")
 @user_passes_test(lambda user: user.is_administrator, login_url="/login_page/")
 def all_unsolved_tickets(request):
-    all_tickets = Ticket.objects.filter(ticket_status="unsolved").order_by('date_time')
+    all_tickets = Ticket.objects.filter(ticket_status="unsolved")
     print(all_tickets)
     solved = False
     return render(request, 'show_tickets.html', {'all_tickets': all_tickets, 'solved': solved})
@@ -179,3 +179,7 @@ def change_password(request):
         else:
             messages.error(request, "Old password is Wrong")
     return render(request, 'change_password.html')
+
+def modifyStatus(request,id):
+    ticket_id = Ticket.objects.get(id=id)
+    return render(request, 'modify_Status.html',{'data':ticket_id})
