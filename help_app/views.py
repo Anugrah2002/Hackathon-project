@@ -179,7 +179,8 @@ def change_password(request):
         else:
             messages.error(request, "Old password is Wrong")
     return render(request, 'change_password.html')
-
+@login_required(login_url="/login_page")
+@user_passes_test(lambda user: user.is_branch_user, login_url="/login_page/")
 def modifyStatus(request,id):
     ticket_id = Ticket.objects.get(id=id)
     return render(request, 'modify_Status.html',{'data':ticket_id})

@@ -34,10 +34,9 @@
             <td> {{i.complaint}}</td>
             <td> {{i.date_time}}</td>
             <td> {{i.ticket_status}}</td>
-            <td align="center"><a href="{% url 'modifyStatus' i.id %}"><button >Modify</button></a></td>
+            <td align="center"><a href="{% url 'modifyStatus' i.id %}"><button class="button-blue" >Solve Ticket</button></a></td>
         </tr>
         {% endfor %}
     </table>
-
 </div>
 {% endblock %}
