@@ -184,7 +184,3 @@ def change_password(request):
 def modifyStatus(request,id):
     ticket_id = Ticket.objects.get(id=id)
     return render(request, 'modify_Status.html',{'data':ticket_id})
-
-
-print(make_password('Cto'))
-print(make_password('ayush'))
